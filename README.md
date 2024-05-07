@@ -5,6 +5,7 @@ Un script bien simple pour faire boucler un GIF sur lui même en le passant à r
 ## Dépandance
 
 - ffmpeg
+- gifski
 
 ## Comment l'utiliser
 
