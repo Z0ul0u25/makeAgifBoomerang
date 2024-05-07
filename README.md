@@ -13,7 +13,7 @@ Remplace `TonGif.gif` par le nom de ton image.
 
 `[frame de début]` Défaut à 0; correspond à l'index du frame de départ.
 
-`[frame depuis la fin] Défaut à 0; correspond à l'index du frame de fin depuis la fin de l'image. Si le gif à 30 images, si l'option est défini à 5, le dernier frame sera le 25e (30-5).
+`[frame depuis la fin]` Défaut à 0; correspond à l'index du frame de fin depuis la fin de l'image. Si le gif à 30 images, si l'option est défini à 5, le dernier frame sera le 25e (30-5).
 
 `fps` Défaut à 20; est le nombre d'image par seconde du résultat.
 
