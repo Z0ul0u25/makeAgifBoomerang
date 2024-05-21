@@ -96,6 +96,6 @@ else
 	fps=$4
 fi
 echo "fps:	${fps}"
-gifski --fps ${fps} -o ${resultDir}_${bufferDebut}-${bufferFin}-${fps}.gif ${resultDir}/*
+gifski --extra -W 2560 -H 1080 --fps ${fps} -o ${resultDir}_${bufferDebut}-${bufferFin}-${fps}.gif ${resultDir}/*
 
 rm -r $resultDir
