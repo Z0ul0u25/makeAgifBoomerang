@@ -42,7 +42,6 @@ if [ $compteurManuel -eq $((framecount * 2)) ]; then
 	echo élimine les doublons
 	c=0
 	for i in $IMAGES; do
-		echo "we do be $(($c % 2))"
 		if [ $(($c % 2)) -eq 0 ];then
 			rm $i
 		else
