@@ -28,6 +28,31 @@ echo "==============="
 echo "Frame de début:	${bufferDebut}"
 echo "Frame au total:	${nbFrame}"
 
+# export frame initial
+if [ ! -d $resultDir ]; then
+	mkdir "${resultDir}"
+fi
+ffmpeg -hide_banner -loglevel error -i $filename $resultDir/%04d.png
+
+IMAGES=$resultDir/*
+compteurManuel=$(ls ${resultDir} | wc -l)
+
+# Certaine video/gif on des doublons. detecté par ffprobe comme ayant la moitié de la valeur requise
+if [ $compteurManuel -eq $((framecount * 2)) ]; then
+	echo élimine les doublons
+	c=0
+	for i in $IMAGES; do
+		echo "we do be $(($c % 2))"
+		if [ $(($c % 2)) -eq 0 ];then
+			rm $i
+		else
+			mv $i ${i::-8}$(printf %04d $((c/2))).png
+		fi
+		((c++))
+	done
+fi
+framecount=$compteurManuel
+
 if [ $framecount -lt $bufferDebut ]; then
 	echo "le frame de debut fourni (${bufferDebut}) est trop grand. Le fichier ne contient que ${framecount} frames"
 	return 3
@@ -37,15 +62,6 @@ if [ $framecount -lt $((nbFrame-bufferDebut)) ]; then
 	echo "le nombre de frame founri (${nbFrame}) est trop grand. Le fichier ne contient que ${framecount} frames"
 	return 2
 fi
-
-if [ ! -d $resultDir ]; then
-	mkdir "${resultDir}"
-fi
-
-# export frame initial
-ffmpeg -hide_banner -loglevel error -i $filename $resultDir/%04d.png
-
-IMAGES=$resultDir/*
 
 # Compteur d'images
 NB_IMAGES=0
